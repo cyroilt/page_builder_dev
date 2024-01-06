@@ -157,6 +157,7 @@ function drop(ev) {
 }
 
 function main_render() {
+  window.table_list = [];
   console.log(init());
   window.els_created = 0;
   document.body.setAttribute("onclick", "clr_editable(event)");
@@ -274,6 +275,15 @@ function Add(ev) {
     object.appendChild(txt_section);
   } else if (type1 == "details") {
     var txt_section = document.createElement("details");
+    var txt_section_summary = document.createElement("summary");
+    txt_section_summary.innerText = "Details";
+    txt_section.appendChild(txt_section_summary);
+    txt_section.innerText = "hidden text";
+    object.appendChild(txt_section);
+  } else if (type1 == "table") {
+    var txt_section = document.createElement("table");
+    window.table_list.push(txt_section);
+    txt_section.classList.add("table1");
     var txt_section_summary = document.createElement("summary");
     txt_section_summary.innerText = "Details";
     txt_section.appendChild(txt_section_summary);
