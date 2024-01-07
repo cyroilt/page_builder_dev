@@ -158,6 +158,7 @@ function drop(ev) {
 
 function main_render() {
   window.table_list = [];
+  window.table_position = 0;
   console.log(init());
   window.els_created = 0;
   document.body.setAttribute("onclick", "clr_editable(event)");
@@ -249,12 +250,12 @@ function Add(ev) {
     "onclick",
     "style_editor_attack(event, '{0}' )".format(object.id),
   );
-  //======================================
   txt_section_ch.appendChild(txt_section_ch_ch);
   txt_section_ch.appendChild(txt_section_ch_btn);
   txt_section_ch.appendChild(txt_section_ch_btn_stngs);
   txt_section.appendChild(txt_section_ch);
   object.appendChild(txt_section);
+  //======================================
   if (type1 == "text") {
     var txt_section = document.createElement("p");
     txt_section.innerText = "Text";
@@ -279,17 +280,33 @@ function Add(ev) {
     txt_section_summary.innerText = "Details";
     txt_section.appendChild(txt_section_summary);
     txt_section.innerText = "hidden text";
+
     object.appendChild(txt_section);
   } else if (type1 == "table") {
+    var par = document.createElement("div");
     var txt_section = document.createElement("table");
-    window.table_list.push(txt_section);
+    txt_section.rows = 1;
+    txt_section.setAttribute("onclick", "get_border_onclick(event)");
+    txt_section.setAttribute("onmouseover", "get_border_onhover(event)");
+    txt_section.setAttribute("onmouseleave", "get_border_onleave(event)");
+    var row = txt_section.insertRow(txt_section.rows - 1);
+    txt_section.setAttribute(
+      "style",
+      "border: 4px solid darkblue;margin-left: auto;margin-right: auto;",
+    );
+    row.setAttribute(
+      "style",
+      "border: 4px solid darkblue;margin-left: auto;margin-right: auto;",
+    );
     txt_section.classList.add("table1");
-    var txt_section_summary = document.createElement("summary");
-    txt_section_summary.innerText = "Details";
-    txt_section.appendChild(txt_section_summary);
-    txt_section.innerText = "hidden text";
-    object.appendChild(txt_section);
+    var cell = row.insertCell(0);
+    cell.innerText = "Table";
+    cell.setAttribute("onclick", "dblclck_text(event)");
+    window.table_list.push(txt_section);
+    par.appendChild(txt_section);
+    object.appendChild(par);
   }
+
   document.getElementById("main").appendChild(object);
 }
 
@@ -305,7 +322,6 @@ function dblclck_text(event) {
 
 function over(ev) {
   if (ev.target.classList.contains("hoverable") == true) {
-    console.log("1");
     ev.target.classList.add("msh_hvr");
     var width = ev.target.offsetWidth;
     var height = ev.target.offsetHeight;
@@ -352,7 +368,15 @@ function getHyperText(ev) {
   elementsContainer.forEach(function (obj) {
     Array.from(obj.getAttributeNames()).forEach(function (attr) {
       if (attr != "style" && attr != "id" && attr != "name") {
-        obj.removeAttribute(attr);
+        if (attr == "class") {
+          if (obj.attr != undefined && obj.attr.split(" ").includes("table1")) {
+            1 == 1;
+          } else {
+            obj.removeAttribute(attr);
+          }
+        } else {
+          obj.removeAttribute(attr);
+        }
       }
     });
   });
@@ -399,4 +423,58 @@ function get_style_from_form(ev) {
   window.evt_target.style.fontFamily = font_family;
   window.evt_target.style.setProperty("text-align", align);
   window.evt_target.setAttribute("name", name);
+}
+
+function get_border_onclick(event) {
+  console.log("1");
+  var object = event.target;
+  var posX = event.clientX;
+  var posY = event.clientY;
+  var rect = object.getBoundingClientRect();
+  var x = rect.right;
+  var y = rect.bottom;
+  if (Math.abs(posX - x) < 10) {
+    for (var i = 0; i < object.rows.length; i++) {
+      var row = object.rows[i];
+      var cell = row.insertCell(row.cells.length);
+      cell.setAttribute("onclick", "dblclck_text(event)");
+      cell.innerText = "Table";
+    }
+  } else if (Math.abs(posY - y) < 10) {
+    var row = object.insertRow(object.rows.length - 1);
+    row.setAttribute(
+      "style",
+      "border: 4px solid darkblue;margin-left: auto;margin-right: auto;",
+    );
+    if (object.rows.length > 0) {
+      var cells = object.rows[object.rows.length - 1].cells.length;
+      for (var i = 0; i < cells; i++) {
+        var cell = row.insertCell(i);
+        cell.innerText = "Table";
+        cell.setAttribute("onclick", "dblclck_text(event)");
+      }
+    } else {
+      var cell = row.insertCell(0);
+      cell.innerText = "Table";
+      cell.setAttribute("onclick", "dblclck_text(event)");
+    }
+  }
+}
+function get_border_onleave(event) {
+  var object = event.target;
+  object.style.removeProperty("border-right");
+  object.style.removeProperty("border-bottom");
+}
+function get_border_onhover(event) {
+  var object = event.target;
+  var posX = event.clientX;
+  var posY = event.clientY;
+  var rect = object.getBoundingClientRect();
+  var x = rect.right;
+  var y = rect.bottom;
+  if (Math.abs(posX - x) < 10) {
+    object.style.setProperty("border-right", "4px solid red");
+  } else if (Math.abs(posY - y) < 10) {
+    object.style.setProperty("border-bottom", "4px solid red");
+  }
 }
