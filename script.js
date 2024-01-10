@@ -1,3 +1,384 @@
+// new style adder
+function style_changer_new(element_dict) {
+  var stylemap = document.styleSheets[0];
+  var css_style_former =
+    ".${name} *{ \
+    color: ${element_dict['color']}; \
+    background-color: ${element_dict['background-color']}; \
+    background-image: ${element_dict['background-image']}; \
+    background-repeat: ${element_dict['background-repeat']}; \
+    background-position: ${element_dict['background-position']}; \
+    background-size: ${element_dict['background-size']}; \
+    font-size: ${element_dict['font-size']}; \
+    font-family: ${element_dict['font-family']}; \
+    font-weight: ${element_dict['font-weight']}; \
+    text-align: ${element_dict['text-align']}; \
+    text-decoration: ${element_dict['text-decoration']}; \
+    text-transform: ${element_dict['text-transform']}; \
+    text-shadow: ${element_dict['text-shadow']}; \
+    text-indent: ${element_dict['text-indent']}; \
+    opactiy: ${element_dict['opacity']}; \
+    border-radius: ${element_dict['border-radius']}; \
+    border-style: ${element_dict['border-style']}; \
+    border-color: ${element_dict['border-color']}; \
+    border-width: ${element_dict['border-width']}; \
+    animation-duration: ${element_dict['animation-duration']}; \
+    animation-name: ${element_dict['animation-name']}; \
+    animation-iteration-count: ${element_dict['animation-iteration-count']}; \
+    animation-direction: ${element_dict['animation-direction']}; \
+    animation-timing-function: ${element_dict['animation-timing-function']}; \
+    animation-event-function: ${element_dict['animation-event-function']}; \
+    animation-delay: ${element_dict['animation-delay']}; \
+    animation-play-state: ${element_dict['animation-play-state'];}";
+  stylemap.insertRule(css_style_former);
+}
+function load_to_form(ev,el){
+    
+      document.getElementById('name').value =el;
+    var el=document.getElementById(el);
+    el.classList.add(el.id);
+  document.getElementById('color').value = el.style.color;
+      document.getElementById('background-color').value = el.style.backgroundColor;
+      document.getElementById('background-image').value = el.style.backgroundImage;
+      document.getElementById('background-repeat').value = el.style.backgroundRepeat;
+      document.getElementById('background-position').value = el.style.backgroundPosition;
+      document.getElementById('background-size').value = el.style.backgroundSize;
+  document.getElementById('font-size').value = el.style.fontSize;
+      document.getElementById('font-family').value = el.style.fontFamily;
+      document.getElementById('text-align').value = el.style.textAlign;
+      document.getElementById('text-decoration').value = el.style.textDecoration;
+  document.getElementById('text-transform').value = el.style.textTransform;
+  document.getElementById('text-shadow').value = el.style.textShadow;
+      document.getElementById('text-indent').value = el.style.textIndent;
+      document.getElementById('opacity').value = el.style.opacity;
+      document.getElementById('border-radius').value = el.style.borderRadius;
+      document.getElementById('border-style').value = el.style.borderStyle;
+      document.getElementById('border-color').value = el.style.borderColor;
+      document.getElementById('border-width').value = el.style.borderWidth;
+      document.getElementById('animation-duration').value = el.style.animationDuration;
+      document.getElementById('animation-name').value = el.style.animationName;
+      document.getElementById('animation-iteration-count').value = el.style.animationIterationCount;
+      document.getElementById('animation-direction').value = el.style.animationDirection;
+  document.getElementById('animation-timing-function').value = el.style.animationTimingFunction;
+      document.getElementById('animation-event-function').value = el.style.animationEventFunction;
+      document.getElementById('animation-delay').value = el.style.animationDelay;
+  document.getElementById('animation-play-state').value = el.style.animationPlayState;
+  
+}
+// new style form
+function style_changer_new_form() {
+  var parent = document.getElementById("style_editing");
+  var child = document.createElement("div");
+  child.setAttribute("id", "style_editing_child");
+  var arr = [
+    "name",
+    "color",
+    "background-color",
+    "background-image",
+    "background-repeat",
+    "background-position",
+    "background-size",
+    "font-size",
+    "font-family",
+    "font-weight",
+    "text-align",
+    "text-decoration",
+    "text-transform",
+    "text-shadow",
+    "text-indent",
+    "opacity",
+    "border-radius",
+    "border-style",
+    "border-color",
+    "border-width",
+    "animation-duration",
+    "animation-name",
+    "animation-iteration-count",
+    "animation-direction",
+    "animation-timing-function",
+    "animation-event-function",
+    "animation-delay",
+    "animation-play-state",
+  ];
+  for (var i = 0; i < arr.length; i++) {
+    child.innerHTML += "<div>";
+    if (arr[i] == "name") {
+      var label = document.createElement("label");
+      label.innerHTML = "Name: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "name");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "Object name");
+    } else if (arr[i] == "color") {
+      var label = document.createElement("label");
+      label.innerHTML = "Color: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "color");
+      input.setAttribute("type", "color");
+      input.setAttribute("value", "#000000");
+       
+    } else if (arr[i] == "background-color") {
+      var label = document.createElement("label");
+      label.innerHTML = "Background Color: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "background-color");
+      input.setAttribute("type", "color");
+      input.setAttribute("value", "#ffffff");
+       
+    } else if (arr[i] == "background-image") {
+      var label = document.createElement("label");
+      label.innerHTML = "Background Image: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "background-image");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "none");
+       
+    } else if (arr[i] == "background-repeat") {
+      var label = document.createElement("label");
+      label.innerHTML = "Background Repeat: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "background-repeat");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "no-repeat");
+       
+    } else if (arr[i] == "background-position") {
+      var label = document.createElement("label");
+      label.innerHTML = "Background Position: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "background-position");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0% 0%");
+       
+    } else if (arr[i] == "background-size") {
+      var label = document.createElement("label");
+      label.innerHTML = "Background Size: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "background-size");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "auto auto");
+       
+    } else if (arr[i] == "font-size") {
+      var label = document.createElement("label");
+      label.innerHTML = "Font Size: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "font-size");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "16px");
+       
+    } else if (arr[i] == "font-family") {
+      var label = document.createElement("label");
+      label.innerHTML = "Font Family: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "font-family");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "Arial");
+       
+    } else if (arr[i] == "font-weight") {
+      var label = document.createElement("label");
+      label.innerHTML = "Font Weight: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "font-weight");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "normal");
+       
+    } else if (arr[i] == "text-align") {
+      var label = document.createElement("label");
+      label.innerHTML = "Text Align: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "text-align");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "left");
+       
+    } else if (arr[i] == "text-decoration") {
+      var label = document.createElement("label");
+      label.innerHTML = "Text Decoration: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "text-decoration");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "none");
+       
+    } else if (arr[i] == "text-transform") {
+      var label = document.createElement("label");
+      label.innerHTML = "Text Transform: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "text-transform");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "none");
+       
+    } else if (arr[i] == "text-shadow") {
+      var label = document.createElement("label");
+      label.innerHTML = "Text Shadow: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "text-shadow");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "none");
+       
+    } else if (arr[i] == "text-indent") {
+      var label = document.createElement("label");
+      label.innerHTML = "Text Indent: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "text-indent");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0px");
+       
+    } else if (arr[i] == "opacity") {
+      var label = document.createElement("label");
+      label.innerHTML = "Opacity: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "opacity");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "1");
+       
+    } else if (arr[i] == "border-radius") {
+      var label = document.createElement("label");
+      label.innerHTML = "Border Radius: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "border-radius");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0px");
+       
+    } else if (arr[i] == "border-style") {
+      var label = document.createElement("label");
+      label.innerHTML = "Border Style: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "border-style");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "none");
+       
+    } else if (arr[i] == "border-color") {
+      var label = document.createElement("label");
+      label.innerHTML = "Border Color: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "border-color");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "#000000");
+       
+    } else if (arr[i] == "border-width") {
+      var label = document.createElement("label");
+      label.innerHTML = "Border Width: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "border-width");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0px");
+       
+    } else if (arr[i] == "animation-duration") {
+      var label = document.createElement("label");
+      label.innerHTML = "Animation Duration: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "animation-duration");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0s");
+      
+    } else if (arr[i] == "animation-name") {
+      var label = document.createElement("label");
+      label.innerHTML = "Animation Name: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "animation-name");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "none");
+       
+    } else if (arr[i] == "animation-iteration-count") {
+      var label = document.createElement("label");
+      label.innerHTML = "Animation Iteration Count: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "animation-iteration-count");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "infinite");
+       
+    } else if (arr[i] == "animation-timing-function") {
+      var label = document.createElement("label");
+      label.innerHTML = "Animation Timing Function: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "animation-timing-function");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "ease-in-out");
+       
+    } else if (arr[i] == "animation-delay") {
+      var label = document.createElement("label");
+      label.innerHTML = "Animation Delay: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "animation-delay");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0s");
+       
+    } else if (arr[i] == "animation-direction") {
+      var label = document.createElement("label");
+      label.innerHTML = "Animation Direction: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "animation-direction");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "normal");
+       
+    } else if (arr[i] == "animation-play-state") {
+      var label = document.createElement("label");
+      label.innerHTML = "Animation Play State: ";
+      var input = document.createElement("input");
+      input.setAttribute("id", "animation-play-state");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "running");
+       
+    }
+    child.appendChild(label);
+    child.innerHTML += "<br>";
+    child.appendChild(input);
+    child.innerHTML += "</div>";
+    parent.appendChild(child);
+  }
+  //save the changes
+  var save = document.createElement("button");
+  save.setAttribute("id", "save");
+  save.innerHTML = "Save";
+  parent.appendChild(save);
+  //add event listener to save button
+  save.addEventListener("click", function () {
+    var arr = {};
+    var name = document.getElementById("name").value;
+    var color = document.getElementById("color").value;
+    var background_color = document.getElementById("background-color").value;
+    var font_size = document.getElementById("font-size").value;
+    var font_family = document.getElementById("font-family").value;
+    var font_weight = document.getElementById("font-weight").value;
+    var text_align = document.getElementById("text-align").value;
+    var text_decoration = document.getElementById("text-decoration").value;
+    var text_transform = document.getElementById("text-transform").value;
+    var text_shadow = document.getElementById("text-shadow").value;
+    var text_indent = document.getElementById("text-indent").value;
+    var opacity = document.getElementById("opacity").value;
+    var border_radius = document.getElementById("border-radius").value;
+    var border_style = document.getElementById("border-style").value;
+    var border_color = document.getElementById("border-color").value;
+    var border_width = document.getElementById("border-width").value;
+    var animation_duration =
+      document.getElementById("animation-duration").value;
+    var animation_name = document.getElementById("animation-name").value;
+    var animation_iteration_count = document.getElementById(
+      "animation-iteration-count",
+    ).value;
+    arr = {
+      name: name,
+      color: color,
+      background_color: background_color,
+      font_size: font_size,
+      font_family: font_family,
+      font_weight: font_weight,
+      text_align: text_align,
+      tex_decoration: text_decoration,
+      text_transform: text_transform,
+      text_shadow: text_shadow,
+      text_indent: text_indent,
+      opacity: opacity,
+      border_radius: border_radius,
+      border_style: border_style,
+      border_color: border_color,
+      border_width: border_width,
+      animation_duration: animation_duration,
+      amination_name: animation_name,
+      animation_iteration_count: animation_iteration_count,
+    };
+    style_changer_new(arr);
+  });
+}
+
 String.prototype.format = function () {
   var formatted = this;
   for (var arg in arguments) {
@@ -9,6 +390,11 @@ String.prototype.format = function () {
 function position_changer(ev) {
   document.getElementById("style_position").value =
     ev.target.getAttribute("name");
+}
+
+function get_attributes_of_element(event) {
+  var obj = event;
+  return obj.getAttributeNames();
 }
 
 function selectElement(id, valueToSelect) {
@@ -157,9 +543,10 @@ function drop(ev) {
 }
 
 function main_render() {
+  style_changer_new_form();
   window.table_list = [];
   window.table_position = 0;
-  console.log(init());
+  //console.log(init());
   window.els_created = 0;
   document.body.setAttribute("onclick", "clr_editable(event)");
   window.dom_elements = [
@@ -170,6 +557,17 @@ function main_render() {
     "table",
     "link",
     "details",
+    "input_select",
+    "input_textarea",
+    "input_checkbox",
+    "input_radio",
+    "input_color",
+    "input_date",
+    "input_datetime",
+    "input_datetime-local",
+    "input_email",
+    "input_month",
+    "input_file",
   ];
   for (var i = 0; i < window.dom_elements.length; i++) {
     var add_button = document.createElement("button");
@@ -189,7 +587,7 @@ function main_render() {
 }
 function Add(ev) {
   trgt = ev.target;
-  console.log(trgt.id);
+  console.log(trgt.id,window.dom_elements);
   if (window.dom_elements.includes(trgt.id) == false) {
     trgt = ev.target.parentElement;
     console.log(trgt.id);
@@ -248,7 +646,7 @@ function Add(ev) {
   txt_section_ch_btn_stngs.classList.add("unstyleble");
   txt_section_ch_btn_stngs.setAttribute(
     "onclick",
-    "style_editor_attack(event, '{0}' )".format(object.id),
+    "load_to_form(event, '{0}' )".format(object.id),
   );
   txt_section_ch.appendChild(txt_section_ch_ch);
   txt_section_ch.appendChild(txt_section_ch_btn);
@@ -259,6 +657,7 @@ function Add(ev) {
   if (type1 == "text") {
     var txt_section = document.createElement("p");
     txt_section.innerText = "Text";
+    txt_section.id=object.id;
     object.appendChild(txt_section);
   } else if (type1 == "button") {
     var txt_section = document.createElement("button");
@@ -267,17 +666,21 @@ function Add(ev) {
   } else if (type1 == "canvas") {
     var txt_section = document.createElement("canvas");
     txt_section.innerText = "Canvas";
+    txt_section.id=object.id;
     txt_section.style.setProperty("border", "1px solid black");
     object.appendChild(txt_section);
   } else if (type1 == "link") {
     var txt_section = document.createElement("a");
     txt_section.href = "#";
+    txt_section.id=object.id;
     txt_section.innerText = "Link";
     object.appendChild(txt_section);
   } else if (type1 == "details") {
     var txt_section = document.createElement("details");
+    txt_section.id=object.id;
     var txt_section_summary = document.createElement("summary");
     txt_section_summary.innerText = "Details";
+    
     txt_section.appendChild(txt_section_summary);
     txt_section.innerText = "hidden text";
 
@@ -285,6 +688,7 @@ function Add(ev) {
   } else if (type1 == "table") {
     var par = document.createElement("div");
     var txt_section = document.createElement("table");
+    txt_section.id=object.id;
     txt_section.rows = 1;
     txt_section.setAttribute("onclick", "get_border_onclick(event)");
     txt_section.setAttribute("onmouseover", "get_border_onhover(event)");
@@ -305,11 +709,63 @@ function Add(ev) {
     window.table_list.push(txt_section);
     par.appendChild(txt_section);
     object.appendChild(par);
+  } else if (type1 == "input_color") {
+    var txt_section = document.createElement("input");
+    txt_section.type = "color";
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_date") {
+    var txt_section = document.createElement("input");
+    txt_section.type = "date";
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_datetime") {
+    var txt_section = document.createElement("input");
+    txt_section.type = "datetime-local";
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_email") {
+    var txt_section = document.createElement("input");
+    txt_section.type = "email";
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_file") {
+    var txt_section = document.createElement("input");
+    txt_section.type = "file";
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_month") {
+    var txt_section = document.createElement("input");
+    txt_section.type = "month";
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_radio") {
+    var txt_section = document.createElement("input");
+    txt_section.type = "radio";
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_checkbox") {
+    var txt_section = document.createElement("input");
+    txt_section.type = "checkbox";
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_textarea") {
+    var txt_section = document.createElement("textarea");
+    txt_section.setAttribute("rows", "5");
+    txt_section.setAttribute("cols", "30");
+    txt_section.id=object.id;
+    object.appendChild(txt_section);
+  } else if (type1 == "input_select") {
+    var txt_section = document.createElement("select");
+    var option = document.createElement("option");
+    option.innerText = "Select";
+    txt_section.id=object.id;
+    txt_section.appendChild(option);
+    object.appendChild(txt_section);
   }
 
   document.getElementById("main").appendChild(object);
 }
-
 function remove_element(ev, object) {
   document.getElementById(object).remove();
 }
@@ -322,6 +778,7 @@ function dblclck_text(event) {
 
 function over(ev) {
   if (ev.target.classList.contains("hoverable") == true) {
+    console.log(get_attributes_of_element(ev.target));
     ev.target.classList.add("msh_hvr");
     var width = ev.target.offsetWidth;
     var height = ev.target.offsetHeight;
