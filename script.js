@@ -1,36 +1,34 @@
 // new style adder
 function style_changer_new(element_dict) {
-  var stylemap = document.styleSheets[0];
-  var css_style_former =
-    ".${name} *{ \
-    color: ${element_dict['color']}; \
-    background-color: ${element_dict['background-color']}; \
-    background-image: ${element_dict['background-image']}; \
-    background-repeat: ${element_dict['background-repeat']}; \
-    background-position: ${element_dict['background-position']}; \
-    background-size: ${element_dict['background-size']}; \
-    font-size: ${element_dict['font-size']}; \
-    font-family: ${element_dict['font-family']}; \
-    font-weight: ${element_dict['font-weight']}; \
-    text-align: ${element_dict['text-align']}; \
-    text-decoration: ${element_dict['text-decoration']}; \
-    text-transform: ${element_dict['text-transform']}; \
-    text-shadow: ${element_dict['text-shadow']}; \
-    text-indent: ${element_dict['text-indent']}; \
-    opactiy: ${element_dict['opacity']}; \
-    border-radius: ${element_dict['border-radius']}; \
-    border-style: ${element_dict['border-style']}; \
-    border-color: ${element_dict['border-color']}; \
-    border-width: ${element_dict['border-width']}; \
-    animation-duration: ${element_dict['animation-duration']}; \
-    animation-name: ${element_dict['animation-name']}; \
-    animation-iteration-count: ${element_dict['animation-iteration-count']}; \
-    animation-direction: ${element_dict['animation-direction']}; \
-    animation-timing-function: ${element_dict['animation-timing-function']}; \
-    animation-event-function: ${element_dict['animation-event-function']}; \
-    animation-delay: ${element_dict['animation-delay']}; \
-    animation-play-state: ${element_dict['animation-play-state'];}";
-  stylemap.insertRule(css_style_former);
+  var stylemap = document.styleSheets[0]; 
+  stylemap.insertRule(".{0}_chi{ \
+                       color: {1}; \
+                       background-color: {2}; \
+                       background-image: {3}; \
+                       background-repeat: {4}; \
+                       background-position: {5}; \
+                       background-size: {6}; \
+                       font-size: {7}; \
+                       font-family: {8}; \
+                       font-weight: {9}; \
+                       text-align: {10}; \
+                       text-decoration: {11}; \
+                       text-transform: {12}; \
+                       text-shadow: {13}; \
+                       text-indent: {14}; \
+                       opactiy: {15}; \
+                       border-radius: {16}; \
+                       border-style: {17}; \
+                       border-color: {18}; \
+                       border-width: {19}; \
+                       animation-duration: {20}; \
+                       animation-name: {21}; \
+                       animation-iteration-count: {22}; \
+                       animation-direction: {23}; \
+                       animation-timing-function: {24}; \
+                       animation-event-function: {25}; \
+                       animation-delay: {26}; \
+                       animation-play-state: {27};".format(element_dict['name'],element_dict['color'],element_dict['background-color'],element_dict['background-image'],element_dict['background-repeat'],element_dict['background-position'],element_dict['background-size'],element_dict['font-size'],element_dict['font-family'],element_dict['font-weight'],element_dict['text-align'],element_dict['text-decoration'],element_dict['text-transform'],element_dict['text-shadow'],element_dict['text-indent'],element_dict['opacity'],element_dict['border-radius'],element_dict['border-style'],element_dict['border-color'],element_dict['border-width'],element_dict['animation-duration'],element_dict['animation-name'],element_dict['animation-iteration-count'],element_dict['animation-direction'],element_dict['animation-timing-function'],element_dict['animation-event-function'],element_dict['animation-delay'],element_dict['animation-play-state']));
 }
 function load_to_form(ev,el){
     
@@ -60,7 +58,6 @@ function load_to_form(ev,el){
       document.getElementById('animation-iteration-count').value = el.style.animationIterationCount;
       document.getElementById('animation-direction').value = el.style.animationDirection;
   document.getElementById('animation-timing-function').value = el.style.animationTimingFunction;
-      document.getElementById('animation-event-function').value = el.style.animationEventFunction;
       document.getElementById('animation-delay').value = el.style.animationDelay;
   document.getElementById('animation-play-state').value = el.style.animationPlayState;
   
@@ -355,25 +352,25 @@ function style_changer_new_form() {
       "animation-iteration-count",
     ).value;
     arr = {
-      name: name,
-      color: color,
-      background_color: background_color,
-      font_size: font_size,
-      font_family: font_family,
-      font_weight: font_weight,
-      text_align: text_align,
-      tex_decoration: text_decoration,
-      text_transform: text_transform,
-      text_shadow: text_shadow,
-      text_indent: text_indent,
-      opacity: opacity,
-      border_radius: border_radius,
-      border_style: border_style,
-      border_color: border_color,
-      border_width: border_width,
-      animation_duration: animation_duration,
-      amination_name: animation_name,
-      animation_iteration_count: animation_iteration_count,
+      "name": name,
+      "color": color,
+      "background-color": background_color,
+      "font-size": font_size,
+      "font-family": font_family,
+      "font-weight": font_weight,
+      "text-align": text_align,
+      "text-decoration": text_decoration,
+      "text-transform": text_transform,
+      "text-shadow": text_shadow,
+      "text-indent": text_indent,
+      "opacity": opacity,
+      "border-radius": border_radius,
+      "border-style": border_style,
+      "border-color": border_color,
+      "border-width": border_width,
+      "animation-duration": animation_duration,
+      "amination-name": animation_name,
+      "animation-iteration_count": animation_iteration_count,
     };
     style_changer_new(arr);
   });
@@ -658,15 +655,18 @@ function Add(ev) {
     var txt_section = document.createElement("p");
     txt_section.innerText = "Text";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "button") {
     var txt_section = document.createElement("button");
     txt_section.innerText = "Button";
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "canvas") {
     var txt_section = document.createElement("canvas");
     txt_section.innerText = "Canvas";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     txt_section.style.setProperty("border", "1px solid black");
     object.appendChild(txt_section);
   } else if (type1 == "link") {
@@ -674,13 +674,14 @@ function Add(ev) {
     txt_section.href = "#";
     txt_section.id=object.id;
     txt_section.innerText = "Link";
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "details") {
     var txt_section = document.createElement("details");
     txt_section.id=object.id;
     var txt_section_summary = document.createElement("summary");
     txt_section_summary.innerText = "Details";
-    
+    txt_section.classList.add("{0}_chi".format(object.id));
     txt_section.appendChild(txt_section_summary);
     txt_section.innerText = "hidden text";
 
@@ -690,6 +691,7 @@ function Add(ev) {
     var txt_section = document.createElement("table");
     txt_section.id=object.id;
     txt_section.rows = 1;
+    txt_section.classList.add("{0}_chi".format(object.id));
     txt_section.setAttribute("onclick", "get_border_onclick(event)");
     txt_section.setAttribute("onmouseover", "get_border_onhover(event)");
     txt_section.setAttribute("onmouseleave", "get_border_onleave(event)");
@@ -713,53 +715,63 @@ function Add(ev) {
     var txt_section = document.createElement("input");
     txt_section.type = "color";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_date") {
     var txt_section = document.createElement("input");
     txt_section.type = "date";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_datetime") {
     var txt_section = document.createElement("input");
     txt_section.type = "datetime-local";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_email") {
     var txt_section = document.createElement("input");
     txt_section.type = "email";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_file") {
     var txt_section = document.createElement("input");
     txt_section.type = "file";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_month") {
     var txt_section = document.createElement("input");
     txt_section.type = "month";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_radio") {
     var txt_section = document.createElement("input");
     txt_section.type = "radio";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_checkbox") {
     var txt_section = document.createElement("input");
     txt_section.type = "checkbox";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_textarea") {
     var txt_section = document.createElement("textarea");
     txt_section.setAttribute("rows", "5");
     txt_section.setAttribute("cols", "30");
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     object.appendChild(txt_section);
   } else if (type1 == "input_select") {
     var txt_section = document.createElement("select");
     var option = document.createElement("option");
     option.innerText = "Select";
     txt_section.id=object.id;
+    txt_section.classList.add("{0}_chi".format(object.id));
     txt_section.appendChild(option);
     object.appendChild(txt_section);
   }
@@ -837,6 +849,8 @@ function getHyperText(ev) {
       }
     });
   });
+  const node = document.getElementById('viewport');
+  node.replaceWith(...node.childNodes);
   var tempLink = document.createElement("a");
   var taBlob = new Blob([document.documentElement.outerHTML], {
     type: "text/plain",
@@ -844,9 +858,37 @@ function getHyperText(ev) {
   tempLink.setAttribute("href", URL.createObjectURL(taBlob));
   tempLink.setAttribute("download", `page.html`);
   tempLink.click();
+  
+  URL.revokeObjectURL(tempLink.href);
+  var tempLink = document.createElement("a");
+  var css= [];
 
+  for (var sheeti= 0; sheeti<document.styleSheets.length; sheeti++) {
+      var sheet= document.styleSheets[sheeti];
+      var rules= ('cssRules' in sheet)? sheet.cssRules : sheet.rules;
+      for (var rulei= 0; rulei<rules.length; rulei++) {
+          var rule= rules[rulei];
+          if ('cssText' in rule)
+              css.push(rule.cssText);
+          else
+              css.push(rule.selectorText+' {\n'+rule.style.cssText+'\n}\n');
+      }
+  }
+
+  
+  var taBlob = new Blob([css.join('\n')], {
+    type: "text/plain",
+  });
+  tempLink.setAttribute("href", URL.createObjectURL(taBlob));
+  tempLink.setAttribute("download", `style.css`);
+  tempLink.click();
   URL.revokeObjectURL(tempLink.href);
   document.documentElement.innerHTML = pasthtml;
+  for (var sheeti= 0; sheeti<document.styleSheets.length; sheeti++) {
+    document.styleSheets[sheeti].disabled=true;
+  }
+  document.head.insertAdjacentHTML("beforeend", `<style>`+css.join('\n')+`</style>`);
+  
 }
 function style_editor_attack(ev, object) {
   var el = document.getElementById(object);
